@@ -1,6 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import userDetails from "./assets/data";
 import "./App.css";
 import ContactForm from "./assets/form";
@@ -30,7 +28,8 @@ function App() {
     }
     setIsModalOpen(false); // popup close
   }
-  function emptyUser() { // this function is for initial data
+  function emptyUser() {
+    // this function is for initial data
     const newUser: user = {
       id: Date.now(),
       firstName: "",
@@ -52,19 +51,22 @@ function App() {
         setCurrentUser={setCurrentUser}
         setIsUserDetailsOpen={setIsUserDetailsOpen}
       />
+
       <button
+        className="AddContact"
         onClick={() => {
           setIsModalOpen(true);
           setIsEdit(false);
         }}
       >
-        Add Contact
+        +
       </button>
+
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
             <button className="close" onClick={() => setIsModalOpen(false)}>
-               &times;{/*<-- this is for close button--> */}
+              &times;{/*<-- this is for close button--> */}
             </button>
             <ContactForm
               addUser={addUser}

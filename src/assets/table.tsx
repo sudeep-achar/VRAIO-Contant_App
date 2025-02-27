@@ -33,7 +33,8 @@ function ContactTable(props: tableProps) {
             <th>Email</th>
             <th>Actions</th>
           </tr>
-          {props.users.map((user) => {//JSON inda data read aaagathe
+          {props.users.map((user) => {
+            //JSON inda data read aaagathe
             return (
               <tr key={user.id}>
                 <td>{user.firstName}</td>
@@ -43,9 +44,21 @@ function ContactTable(props: tableProps) {
                 <td>{user.phoneNumber}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button onClick={() => deleteUser(user.id)}>Delete</button>
-                  <button onClick={() => editUser(user)}>Edit</button>
-                  <button onClick={() => viewUserDetails(user)}>Details</button>
+                  <button
+                    className="ButtonMain Delete"
+                    onClick={() => deleteUser(user.id)}
+                  >
+                    Delete
+                  </button>
+                  <button className="ButtonMain" onClick={() => editUser(user)}>
+                    Edit
+                  </button>
+                  <button
+                    className="ButtonMain"
+                    onClick={() => viewUserDetails(user)}
+                  >
+                    Details
+                  </button>
                 </td>
               </tr>
             );

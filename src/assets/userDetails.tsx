@@ -2,8 +2,8 @@ import { user, userDetailsProps } from "./user";
 
 function userDetails(props: userDetailsProps) {
   return (
-    <div>
-      <h1>User Details</h1>
+    <div className="user-details">
+      <h1>USER DETAILS</h1>
       <div>
         <label>First Name:</label>
         <span>{props.user.firstName}</span>
