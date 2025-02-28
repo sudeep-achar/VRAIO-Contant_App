@@ -24,6 +24,13 @@ function ContactForm(props: createTableProps) {
     props.addUser(newUser);
   }
 
+  function handlePhoneNumberChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    if (value.length <= 10 && /^\d*$/.test(value)) {
+      setPhonenumber(value);
+    }
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -71,7 +78,7 @@ function ContactForm(props: createTableProps) {
           type="tel"
           id="phonenumber"
           value={phonenumber}
-          onChange={(e) => setPhonenumber(e.target.value)}
+          onChange={handlePhoneNumberChange}
           required
         />
       </div>
