@@ -23,6 +23,9 @@ function ContactTable(props: tableProps) {
   return (
     <>
       <div>
+        <div className="Heading">
+          <h1>CONTACT APP</h1>
+        </div>
         <table>
           <tr>
             <th>FirstName</th>

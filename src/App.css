@@ -16,6 +16,14 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+.Heading {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: brown;
+  margin-top: 20px;
+}
+
 /*total screen or full screen */
 .modal {
   display: flex;
