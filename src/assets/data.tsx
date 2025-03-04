@@ -5,8 +5,8 @@ const userDetails = [
     lastName: "Poojary",
     nickname: "ab",
     dateOfBirth: "2003-05-01",
-    phoneNumber: "9989483949",
-    email: "mithu18@gmail.com",
+    phoneNumber: ["9989483949"],
+    email: ["mithu18@gmail.com"],
   },
   {
     id: 2,
@@ -14,8 +14,8 @@ const userDetails = [
     lastName: "Shetty",
     nickname: "cd",
     dateOfBirth: "2003-02-25",
-    phoneNumber: "9888324560",
-    email: "manojshetty23@gmail.com",
+    phoneNumber: ["9888324560"],
+    email: ["manojshetty23@gmail.com"],
   },
 ];
 

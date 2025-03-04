@@ -44,8 +44,8 @@ function ContactTable(props: tableProps) {
                 <td>{user.lastName}</td>
                 <td>{user.nickname}</td>
                 <td>{user.dateOfBirth}</td>
-                <td>{user.phoneNumber}</td>
-                <td>{user.email}</td>
+                <td>{user.phoneNumber[0]}</td>
+                <td>{user.email[0]}</td>
                 <td>
                   <button
                     className="ButtonMain Delete"

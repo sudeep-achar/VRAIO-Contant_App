@@ -4,8 +4,8 @@ export interface user {
     lastName: string;
     nickname: string;
     dateOfBirth: string;
-    phoneNumber: string;
-    email: string;
+    phoneNumber: string[];
+    email: string[];
 }
 
 export interface tableProps{

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import { createTableProps, user } from "./user";
+import userDetails from "./data";
 
 function ContactForm(props: createTableProps) {
   const [firstname, setFirstname] = useState(props.initialUser.firstName);
   const [lastname, setLastname] = useState(props.initialUser.lastName);
   const [nickname, setNickname] = useState(props.initialUser.nickname);
   const [dateofbirth, setDateofbirth] = useState(props.initialUser.dateOfBirth);
-  const [phonenumber, setPhonenumber] = useState(props.initialUser.phoneNumber);
-  const [email, setEmail] = useState(props.initialUser.email);
+  const [phonenumber, setPhonenumber] = useState<string[]>(
+    props.initialUser.phoneNumber
+  );
+  const [email, setEmail] = useState<string[]>(props.initialUser.email);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault(); //page not refreshing
@@ -24,11 +27,36 @@ function ContactForm(props: createTableProps) {
     props.addUser(newUser);
   }
 
-  function handlePhoneNumberChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const value = e.target.value;
+  function handlePhoneNumberChange(index: number, value: string) {
     if (value.length <= 10 && /^\d*$/.test(value)) {
-      setPhonenumber(value);
+      const newPhoneNumber = [...phonenumber];
+      newPhoneNumber[index] = value;
+      setPhonenumber(newPhoneNumber);
     }
+  }
+
+  function handleEmailChange(index: number, value: string) {
+    const newEmail = [...email];
+    newEmail[index] = value;
+    setEmail(newEmail);
+  }
+
+  function addPhoneNumber() {
+    setPhonenumber([...phonenumber, ""]);
+  }
+
+  function addEmail() {
+    setEmail([...email, ""]);
+  }
+
+  function removePhoneNumber(index: number) {
+    const newPhoneNumber = phonenumber.filter((_, i) => i !== index);
+    setPhonenumber(newPhoneNumber);
+  }
+
+  function removeEmail(index: number) {
+    const newEmail = email.filter((_, i) => i !== index);
+    setEmail(newEmail);
   }
 
   return (
@@ -73,24 +101,53 @@ function ContactForm(props: createTableProps) {
         />
       </div>
       <div>
-        <label htmlFor="phonenumber">Phone Number:</label>
-        <input
-          type="tel"
-          id="phonenumber"
-          value={phonenumber}
-          onChange={handlePhoneNumberChange}
-          required
-        />
+        <label>Phone Number:</label>
+        {phonenumber.map((number, index) => (
+          <div key={index}>
+            <span>
+              <input
+                type="tel"
+                value={number}
+                onChange={(e) => handlePhoneNumberChange(index, e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                className="plus-minus-button"
+                onClick={() => removePhoneNumber(index)}
+              >
+                -
+              </button>
+            </span>
+          </div>
+        ))}
+        <button type="button" className="plus-button" onClick={addPhoneNumber}>
+          +
+        </button>
       </div>
+
       <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+        <label>Email:</label>
+        {email.map((mail, index) => (
+          <div key={index}>
+            <input
+              type="email"
+              value={mail}
+              onChange={(e) => handleEmailChange(index, e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              className="plus-minus-button"
+              onClick={() => removeEmail(index)}
+            >
+              -
+            </button>
+          </div>
+        ))}
+        <button type="button" className="plus-button" onClick={addEmail}>
+          +
+        </button>
       </div>
       <button type="submit">Submit</button>
     </form>

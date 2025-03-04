@@ -36,8 +36,8 @@ function App() {
       lastName: "",
       nickname: "",
       dateOfBirth: "",
-      phoneNumber: "",
-      email: "",
+      phoneNumber: [],
+      email: [],
     };
     return newUser;
   }

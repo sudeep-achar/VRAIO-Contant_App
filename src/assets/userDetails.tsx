@@ -22,11 +22,25 @@ function userDetails(props: userDetailsProps) {
       </div>
       <div>
         <label>Phone Number:</label>
-        <span>{props.user.phoneNumber}</span>
+        <div className="phone-number">
+          {props.user.phoneNumber.map((number, index) => (
+            <>
+              <span>{number}</span>
+              <br />
+            </>
+          ))}
+        </div>
       </div>
       <div>
         <label>Email:</label>
-        <span>{props.user.email}</span>
+        <div className="email">
+          {props.user.email.map((email) => (
+            <>
+              <span>{email}</span>
+              <br />
+            </>
+          ))}{" "}
+        </div>
       </div>
     </div>
   );
