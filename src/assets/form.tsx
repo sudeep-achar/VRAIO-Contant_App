@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createTableProps, user } from "./user";
-import userDetails from "./data";
 
 function ContactForm(props: createTableProps) {
   const [firstname, setFirstname] = useState(props.initialUser.firstName);
   const [lastname, setLastname] = useState(props.initialUser.lastName);
   const [nickname, setNickname] = useState(props.initialUser.nickname);
   const [dateofbirth, setDateofbirth] = useState(props.initialUser.dateOfBirth);
-  const [phonenumber, setPhonenumber] = useState<string[]>(
-    props.initialUser.phoneNumber
-  );
-  const [email, setEmail] = useState<string[]>(props.initialUser.email);
+  const [phonenumber, setPhonenumber] = useState<string[]>([
+    ...props.initialUser.phoneNumber,
+  ]);
+  const [email, setEmail] = useState<string[]>([...props.initialUser.email]);
+
+  useEffect(() => {
+    if (props.initialUser.id === 0) {
+      addPhoneNumber();
+      addEmail();
+    }
+  }, []);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault(); //page not refreshing

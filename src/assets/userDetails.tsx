@@ -1,8 +1,8 @@
-import { user, userDetailsProps } from "./user";
+import { userDetailsProps } from "./user";
 
 function userDetails(props: userDetailsProps) {
   return (
-    <div className="user-details">
+    <div className="user-details" key={props.user.id}>
       <h1>USER DETAILS</h1>
       <div>
         <label>First Name:</label>
@@ -18,14 +18,20 @@ function userDetails(props: userDetailsProps) {
       </div>
       <div>
         <label>Date of Birth:</label>
-        <span>{props.user.dateOfBirth}</span>
+        <span>
+          {new Date(props.user.dateOfBirth).toLocaleDateString("en-IN", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+          })}
+        </span>
       </div>
       <div>
         <label>Phone Number:</label>
         <div className="phone-number">
           {props.user.phoneNumber.map((number, index) => (
             <>
-              <span>{number}</span>
+              <span key={index}>{number}</span>
               <br />
             </>
           ))}
@@ -34,9 +40,9 @@ function userDetails(props: userDetailsProps) {
       <div>
         <label>Email:</label>
         <div className="email">
-          {props.user.email.map((email) => (
+          {props.user.email.map((email, index) => (
             <>
-              <span>{email}</span>
+              <span key={index}>{email}</span>
               <br />
             </>
           ))}{" "}
